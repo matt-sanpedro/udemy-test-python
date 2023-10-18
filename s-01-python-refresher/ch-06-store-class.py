@@ -11,11 +11,16 @@ class Store:
 
     def stock_price(self):
         # Add together all item prices in self.items and return the total.
+
+        # method 1: for loop 
         total = 0
         for item in self.items:
             # print(item["price"])
             total += item["price"]
         return total
+
+        # method 2: list comprehension
+        return sum([item["price"] for item in self.items])
 
 store = Store("Amazon")
 store.add_item("orange", 1)

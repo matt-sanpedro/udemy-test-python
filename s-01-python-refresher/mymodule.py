@@ -1,3 +1,11 @@
+# has no info on what folder it is in, cannot perform relative import
+# from .libs import mylib
+
+# below import also works
+# from libs.operations import operator
+
+from libs import mylib
+
 def divide(dividend, divisor):
     return dividend / divisor
 

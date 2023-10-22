@@ -8,10 +8,10 @@ NOTES:
 - If writing a test is too hard, then what you are testing is too complex
 - examples useful for rest APIs and web development
 """
-import unittest
+from unittest import TestCase
 from post import Post
 
-class PostTest(unittest.TestCase):
+class PostTest(TestCase):
     def test_create_post(self):
         p = Post("Test", "Test Content")
 
@@ -29,3 +29,4 @@ class PostTest(unittest.TestCase):
         p = Post("Test", "Test Content")
         expected = "<Post Test, Content: Test Content>"
         self.assertEqual(expected, p.__repr__())
+        

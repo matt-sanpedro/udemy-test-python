@@ -17,3 +17,7 @@
 - folder structure of test py file: blog/tests/unit
 - file name of test py file: test_post.py
 ```python3 -m unittest tests.unit.test_post```
+
+## Research to become better at writing Python test cases
+- boundary value analysis
+- equivalence partitioning

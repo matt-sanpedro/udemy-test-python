@@ -4,13 +4,18 @@ mock = Mock()
 print(type(mock))
 print(mock)
 
-# lazy attributes and methods
+"""
+Lazy Attributes and Methods
+- a Mock must simulate any object it replaces, creates attributes when accessed
+"""
 print(mock.some_attribute)
 print(mock.do_something())
 
 """
-if mocking from json library and calling dumps(), 
-Python mock object will create the method so its interface can match library's interface
+If mocking from json library and calling dumps():
+- Python mock object will create the method so its interface can match library's interface
+- unlike real dumps, mocked method requires no arguments but can accept arguements passed to it
+- return value of dumps() is also a Mock, thus return value of mocked method can be used in many ways
 """
 json = Mock()
 print("JSON dumps: ", json.dumps())

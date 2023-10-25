@@ -1,6 +1,6 @@
 """
 Assertions and Inspection
-- Mock instances store data on how it's used
+- Mock instances store data on how it's used:
     * if you called a method
     * how you called the method
 """

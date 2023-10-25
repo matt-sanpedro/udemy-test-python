@@ -29,6 +29,9 @@
 - same folder structure set up as Linux
 - run a single file with: ```py -m unittest tests.unit.test_post```
 - run all tests in directory with: ```py -m unittest discover <test_directory>```
+- target specific scripts with VERBOSE mode from the blog directory: 
+```py -m unittest tests\system\test_app.py -v```
+
 
 ## Research to become better at writing Python test cases
 - boundary value analysis

@@ -19,3 +19,8 @@ class AppTest(TestCase):
             # print("APP:  ", app.print_blogs())
             # print("type: ", type(app.print_blogs()))
             mocked_print.assert_called_with("- Test by Test Author (0 posts)")
+
+    def test_menu_prints_prompt(self):
+        with patch("builtins.input") as mocked_input:
+            app.menu()
+            mocked_input.assert_called_with(app.MENU_PROMPT)

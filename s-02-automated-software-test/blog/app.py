@@ -13,6 +13,7 @@ def menu():
     # let  user make a choice
     # do something with that choice
     # eventually exit
+    # include a while loop for user to exit
     print_blogs()
 
 def print_blogs():

@@ -8,6 +8,7 @@ from blog import Blog
 
 # in python, when variable is ALL uppercase, should not change this CONSTANT
 MENU_PROMPT = "Enter:\n\t'c': create a blog\n\t'l' to list blogs\n\t'r' to read one\n\t'p' to create a post\n\t'q' to quit\nYour choice: "
+POST_TEMPLATE = "--- {} ---\n{}\n"
 # creates a new dictionary
 blogs = dict() # blog_name : Blog object
 # blogs = {}
@@ -49,10 +50,19 @@ def ask_create_blog():
     author = input("Enter user name: ")
     blogs[title] = Blog(title, author)
 
-# CONTINUE HERE AT VIDEO TIME: 7:16
 def ask_read_blog():
     # ask for a blog title, then print the post
-    pass
+    title = input("Enter the blog title you want to read: ")
+    print_posts(blogs[title])
+
+def print_posts(blog):
+    # print the post(s) in the blog
+    for post in blog.posts:
+        print_post(post)
+        
+def print_post(post):
+    # prints the title and content attributes of object
+    print(POST_TEMPLATE.format(post.title, post.content))
 
 def ask_create_post():
     # ask for blog title, post title, and post content, 

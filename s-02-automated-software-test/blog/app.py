@@ -67,7 +67,11 @@ def print_post(post):
 def ask_create_post():
     # ask for blog title, post title, and post content, 
     # then create a new post in the blog specified by title
-    pass
+    blog_name = input("Enter the blog title youwant to write a post in: ")
+    title = input("Enter your post title: ")
+    content = input("Enter your post content: ")
+
+    blogs[blog_name].create_post(title, content)
 
 if __name__ == "__main__":
     menu()

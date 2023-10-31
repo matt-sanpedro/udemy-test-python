@@ -6,6 +6,16 @@ from blog import Blog
 from post import Post
 
 class AppTest(TestCase):
+    def test_menu_calls_create_blog(self):
+        with patch("builtins.input") as mocked_input:
+            with patch("app.ask_create_blog") as mocked_ask_create_blog:
+                mocked_input.side_effect = ("c", "Test Create Blog", "Test Author", "q")
+
+                app.menu()
+                
+                # blog is no longer created once mocked
+                # self.assertIsNotNone(app.blogs["Test Create Blog"])
+                mocked_ask_create_blog.assert_called()
     
     def test_menu_prints_prompt(self):
         with patch("builtins.input", return_value = "q") as mocked_input:
@@ -81,7 +91,7 @@ class AppTest(TestCase):
             
     def test_ask_create_post(self):
         blog = Blog("Test", "Test Author")
-        app.blogs = {"Test": blog}
+        app.blogs = {"Test Blog": blog}
         
         # mock input function
         with patch("builtins.input") as mocked_input:

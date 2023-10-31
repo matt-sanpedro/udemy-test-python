@@ -6,6 +6,11 @@ from blog import Blog
 from post import Post
 
 class AppTest(TestCase):
+    def setUp(self):
+        # can define in TestCase and run before each test
+        blog = Blog("Test", "Test Author")
+        app.blogs = {"Test": blog}
+        
     def test_menu_calls_create_blog(self):
         with patch("builtins.input") as mocked_input:
             with patch("app.ask_create_blog") as mocked_ask_create_blog:
@@ -31,8 +36,8 @@ class AppTest(TestCase):
     def test_print_blogs(self):
         # test printing to console by patching the print statement
         # create the blog instant to test against
-        blog = Blog("Test", "Test Author")
-        app.blogs = {"Test": blog}
+        # blog = Blog("Test", "Test Author")
+        # app.blogs = {"Test": blog}
 
         # patch in the builtin print method, it likes to receive the module
         with patch("builtins.print") as mocked_print:
@@ -59,8 +64,9 @@ class AppTest(TestCase):
             self.assertIsNotNone(app.blogs.get("Test"))
             
     def test_ask_read_blog(self):
-        blog = Blog("Test", "Test Author")
-        app.blogs = {"Test": blog}
+        # blog = Blog("Test", "Test Author")
+        # app.blogs = {"Test": blog}
+        blog = app.blogs["Test"]
 
         # ask_read_blog: requires user input to return value
         with patch("builtins.input", return_value = "Test"):
@@ -71,10 +77,8 @@ class AppTest(TestCase):
                 mocked_print_posts.assert_called_with(blog)
 
     def test_print_posts(self):
-        blog = Blog("Test", "Test Author")
-        # create a post to test
+        blog = app.blogs["Test"]
         blog.create_post("Test Post", "Test Content")
-        app.blogs = {"Test": blog}
         
         with patch("app.print_post") as mocked_print_post:
             app.print_posts(blog)
@@ -90,12 +94,11 @@ class AppTest(TestCase):
             mocked_print.assert_called_with(expected_print)
             
     def test_ask_create_post(self):
-        blog = Blog("Test", "Test Author")
-        app.blogs = {"Test Blog": blog}
+        blog = app.blogs["Test"]
         
         # mock input function
         with patch("builtins.input") as mocked_input:
-            mocked_input.side_effect = ("Test Blog", "Test Title", "Test Content")
+            mocked_input.side_effect = ("Test", "Test Title", "Test Content")
         
             # ensure blog has new post
             app.ask_create_post()
